@@ -1,0 +1,17 @@
+class Employee:
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    def display_employee(self):
+        return f"Employee Name: {self.name}, Salary: ${self.salary:.2f}"
+
+class Manager(Employee):
+    def calculate_long_term_bonus(self):
+        """Calculate long-term bonus as 40% of salary."""
+        return self.salary * 0.4
+
+# Testing Manager Class
+manager1 = Manager("Alice Johnson", 80000)
+print(manager1.display_employee())
+print(f"Long-Term Bonus: ${manager1.calculate_long_term_bonus():.2f}")
