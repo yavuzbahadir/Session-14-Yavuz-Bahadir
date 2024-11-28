@@ -1,0 +1,49 @@
+class Car:
+    def __init__(self, make, model, sticker_price):
+        self.make = make
+        self.model = model
+        self.sticker_price = sticker_price
+
+    def discount_price(self):
+        """Calculate discount price as 90% of sticker price."""
+        return self.sticker_price * 0.9
+
+    def display_car(self):
+        return f"Car: {self.make} {self.model}, Sticker Price: ${self.sticker_price:.2f}"
+
+class Sport(Car):
+    def __init__(self, make, model, sticker_price):
+        super().__init__(make, model, sticker_price)
+        self.sport_wheels = "N"
+        self.sport_engine = "N"
+        self.sport_interior = "N"
+
+    def set_sport_wheels(self, option):
+        self.sport_wheels = option
+
+    def set_sport_engine(self, option):
+        self.sport_engine = option
+
+    def set_sport_interior(self, option):
+        self.sport_interior = option
+
+    def price_with_options(self):
+        """Calculate price including selected options."""
+        updated_price = self.discount_price()
+        if self.sport_wheels.upper() == "Y":
+            updated_price += 1000
+        if self.sport_engine.upper() == "Y":
+            updated_price += 3000
+        if self.sport_interior.upper() == "Y":
+            updated_price += 2000
+        return updated_price
+
+# Testing Sport Car Class
+sport_car = Sport("Ferrari", "488", 250000)
+sport_car.set_sport_wheels("Y")  # Adding Sport Wheels
+sport_car.set_sport_engine("Y")  # Adding Sport Engine
+sport_car.set_sport_interior("N")  # No Sport Interior
+
+print(sport_car.display_car())
+print(f"Discounted Price: ${sport_car.discount_price():.2f}")
+print(f"Price with Options: ${sport_car.price_with_options():.2f}")
